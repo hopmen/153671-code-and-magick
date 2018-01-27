@@ -20,6 +20,7 @@ window.GameConstants = {
       return height - 100;
     }
   }
+  
 };
 
 window.Game = (function () {
