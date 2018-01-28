@@ -40,8 +40,11 @@ window.renderStatistics = function (ctx, players, times) {
   for (var i = 0; i < players.length; i++) {
     var barX = HISTOGRAM_X + 2 * GAP * i;
     var barHeight = MAX_BAR_HEIGHT * times[i] / maxTime;
-
-    players[i] === 'Вы' ? ctx.fillStyle = 'rgba(255, 0, 0, 1)' : ctx.fillStyle = 'rgba(0, 0, 255,' + randomInterval(0.2, 0.8) + ')';
+    if (players[i] === 'Вы') {
+      ctx.fillStyle = 'rgba(255, 0, 0, 1)';
+    } else {
+      ctx.fillStyle = 'rgba(0, 0, 255,' + randomInterval(0.2, 0.8) + ')';
+    }
     ctx.fillRect(barX, HISTOGRAM_Y - barHeight, BAR_WIDTH, barHeight);
 
     ctx.fillStyle = '#000';
