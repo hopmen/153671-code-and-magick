@@ -11,7 +11,7 @@ var surnames = ['да Марья', 'Верон', 'Мирабелла', 'Валь
 var coatColor = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 var eyesColor = ['blue', 'green', 'yellow', 'red', 'black'];
 
-var generateDataAndDelete = function(arrData){
+var generateDataAndDelete = function (arrData) {
   var randomId = Math.floor(Math.random() * (arrData.length - 1));
   var randomData = arrData[randomId];
   arrData.splice(randomId, 1);
@@ -21,7 +21,7 @@ var generateDataAndDelete = function(arrData){
 var wizards = [];
 for (var i = 0; i < 4; i++) {
   wizards.push({
-    name: generateDataAndDelete(names) + ' ' + generateDataAndDelete(surnames) ,
+    name: generateDataAndDelete(names) + ' ' + generateDataAndDelete(surnames),
     coatColor: generateDataAndDelete(coatColor),
     eyesColor: generateDataAndDelete(eyesColor)
   });
