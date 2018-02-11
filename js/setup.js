@@ -53,7 +53,6 @@ var ENTER_KEYCODE = 13;
 var setup = document.querySelector('.setup');
 var setupOpen = document.querySelector('.setup-open');
 var setupClose = setup.querySelector('.setup-close');
-var setupOpenIcon = document.querySelector('.setup-open-icon');
 var similalListElement = document.querySelector('.setup-similar-list');
 var similarWizardTemplate = document.querySelector('#similar-wizard-template').content;
 var NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
@@ -70,35 +69,35 @@ similalListElement.appendChild(creatFragmentWizards(wizards));
 setup.querySelector('.setup-similar').classList.remove('hidden');
 
 
-////////////////// обработка событий, зарытие открытие окна
+// //////////////// обработка событий, зарытие открытие окна
 
-var changeEyeColor = function(evt){
+var changeEyeColor = function (evt) {
   evt.target.style.fill = randomData(EYES_COLORS, 1)[0];
-}
+};
 
-var changeCoatColor = function(evt){
+var changeCoatColor = function (evt) {
   evt.target.style.fill = randomData(COAT_COLORS, 1)[0];
-}
+};
 
-var changeFireballColor = function(evt){
+var changeFireballColor = function () {
   fireball.style = 'background: ' + randomData(FIREBALL_COLOR, 1)[0];
-}
+};
 
-var onPopupEscPress = function(evt) {  
+var onPopupEscPress = function (evt) {
   if (evt.keyCode === ESC_KEYCODE && evt.target !== document.querySelector('.setup-user-name')) {
     closePopup();
   }
 };
 
-var openPopup = function() {
+var openPopup = function () {
   setup.classList.remove('hidden');
-  document.addEventListener('keydown', onPopupEscPress);  
+  document.addEventListener('keydown', onPopupEscPress);
   eyes.addEventListener('click', changeEyeColor);
   coat.addEventListener('click', changeCoatColor);
   fireball.addEventListener('click', changeFireballColor);
 };
 
-var closePopup = function() {
+var closePopup = function () {
   setup.classList.add('hidden');
   document.removeEventListener('keydown', onPopupEscPress);
   eyes.removeEventListener('click', changeEyeColor);
@@ -106,23 +105,23 @@ var closePopup = function() {
   fireball.removeEventListener('click', changeFireballColor);
 };
 
-setupOpen.addEventListener('click', function() {
+setupOpen.addEventListener('click', function () {
   openPopup();
 });
 
-setupOpen.addEventListener('keydown', function(evt) {
+setupOpen.addEventListener('keydown', function (evt) {
   if (evt.keyCode === ENTER_KEYCODE) {
     openPopup();
   }
 });
 
-setupClose.addEventListener('click', function() {
+setupClose.addEventListener('click', function () {
   closePopup();
 });
 
-setupClose.addEventListener('keydown', function(evt) {
+setupClose.addEventListener('keydown', function (evt) {
   if (evt.keyCode === ENTER_KEYCODE) {
     closePopup();
   }
 });
-/////////////////
+// ///////////////
