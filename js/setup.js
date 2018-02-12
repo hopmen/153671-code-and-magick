@@ -65,6 +65,9 @@ var wizards = creatArrWizards(wizardNubmder);
 var eyes = document.querySelector('.wizard-eyes');
 var coat = document.querySelector('.wizard-coat');
 var fireball = document.querySelector('.setup-fireball-wrap');
+var inputCoatColor = document.querySelector('input[name=\'coat-color\']');
+var inputEyesColor = document.querySelector('input[name=\'eyes-color\']');
+var inputFireballColor = document.querySelector('input[name=\'fireball-color\']');
 similalListElement.appendChild(creatFragmentWizards(wizards));
 setup.querySelector('.setup-similar').classList.remove('hidden');
 
@@ -72,15 +75,21 @@ setup.querySelector('.setup-similar').classList.remove('hidden');
 // //////////////// обработка событий, зарытие открытие окна
 
 var changeEyeColor = function (evt) {
-  evt.target.style.fill = randomData(EYES_COLORS, 1)[0];
+  var timeData = randomData(EYES_COLORS, 1)[0];
+  evt.target.style.fill = timeData;
+  inputEyesColor.value = timeData;
 };
 
 var changeCoatColor = function (evt) {
+  var timeData = randomData(COAT_COLORS, 1)[0];
   evt.target.style.fill = randomData(COAT_COLORS, 1)[0];
+  inputCoatColor.value = timeData;
 };
 
-var changeFireballColor = function () {
-  fireball.style = 'background: ' + randomData(FIREBALL_COLOR, 1)[0];
+var changeFireballColor = function (evt) {
+  var timeData = randomData(FIREBALL_COLOR, 1)[0];
+  evt.currentTarget.style.background = randomData(FIREBALL_COLOR, 1)[0];
+  inputFireballColor.value = timeData;
 };
 
 var onPopupEscPress = function (evt) {
