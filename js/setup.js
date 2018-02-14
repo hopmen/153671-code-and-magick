@@ -47,8 +47,7 @@ var creatFragmentWizards = function (wizards) {
   }
   return fragment;
 };
-var ESC_KEYCODE = 27;
-var ENTER_KEYCODE = 13;
+
 
 var setup = document.querySelector('.setup');
 var setupOpen = document.querySelector('.setup-open');
@@ -62,41 +61,29 @@ var EYES_COLORS = ['blue', 'green', 'yellow', 'red', 'black'];
 var FIREBALL_COLOR = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
 var wizardNubmder = 4;
 var wizards = creatArrWizards(wizardNubmder);
-var eyes = document.querySelector('.wizard-eyes');
-var coat = document.querySelector('.wizard-coat');
-var fireball = document.querySelector('.setup-fireball-wrap');
-var inputCoatColor = document.querySelector('input[name=\'coat-color\']');
-var inputEyesColor = document.querySelector('input[name=\'eyes-color\']');
-var inputFireballColor = document.querySelector('input[name=\'fireball-color\']');
 similalListElement.appendChild(creatFragmentWizards(wizards));
 setup.querySelector('.setup-similar').classList.remove('hidden');
 
 
 // //////////////// обработка событий, зарытие открытие окна
 
-var changeEyeColor = function (evt) {
-  var timeData = randomData(EYES_COLORS, 1)[0];
-  evt.target.style.fill = timeData;
-  inputEyesColor.value = timeData;
+var changeColor = function (arr, input, evt) {
+  var tempData = randomData(arr, 1)[0];
+  evt.target.style.fill = tempData;
+  input.value = tempData;
 };
-
-var changeCoatColor = function (evt) {
-  var timeData = randomData(COAT_COLORS, 1)[0];
-  evt.target.style.fill = randomData(COAT_COLORS, 1)[0];
-  inputCoatColor.value = timeData;
-};
+var changeEyeColor = changeColor.bind(null, EYES_COLORS, document.querySelector('input[name=\'eyes-color\']'));
+var changeCoatColor = changeColor.bind(null, COAT_COLORS, document.querySelector('input[name=\'coat-color\']'));
 
 var changeFireballColor = function (evt) {
   var timeData = randomData(FIREBALL_COLOR, 1)[0];
-  evt.currentTarget.style.background = randomData(FIREBALL_COLOR, 1)[0];
-  inputFireballColor.value = timeData;
+  evt.currentTarget.style.background = timeData;
+  document.querySelector('input[name=\'fireball-color\']').value = timeData;
 };
 
-var onPopupEscPress = function (evt) {
-  if (evt.keyCode === ESC_KEYCODE && evt.target !== document.querySelector('.setup-user-name')) {
-    closePopup();
-  }
-};
+var eyes = document.querySelector('.wizard-eyes');
+var coat = document.querySelector('.wizard-coat');
+var fireball = document.querySelector('.setup-fireball-wrap');
 
 var openPopup = function () {
   setup.classList.remove('hidden');
@@ -106,6 +93,14 @@ var openPopup = function () {
   fireball.addEventListener('click', changeFireballColor);
 };
 
+var ESC_KEYCODE = 27;
+var ENTER_KEYCODE = 13;
+
+var onPopupEscPress = function (evt) {
+  if (evt.keyCode === ESC_KEYCODE && evt.target !== document.querySelector('.setup-user-name')) {
+    closePopup();
+  }
+};
 var closePopup = function () {
   setup.classList.add('hidden');
   document.removeEventListener('keydown', onPopupEscPress);
